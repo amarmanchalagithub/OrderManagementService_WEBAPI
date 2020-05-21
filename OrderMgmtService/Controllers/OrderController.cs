@@ -11,9 +11,13 @@ namespace OrderMgmtService.Controllers
     public class OrderController : ApiController
     {
 
+        /// <summary>
+        /// this is to get the OrderDetas by orderId
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
         [Route("GetOrderDetailsByOrderId")]
         [HttpGet]
-        
         public HttpResponseMessage Get(int orderId)
         {
             if (orderId != 0)
