@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2003
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderMgmtService", "OrderMgmtService\OrderMgmtService.csproj", "{3DAA8434-327F-4668-8B2F-99B1A220CD46}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ARM", "ARM", "{CE2D73AA-9671-45EE-B418-2EF517EAB770}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
