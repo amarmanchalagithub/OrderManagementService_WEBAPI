@@ -13,8 +13,10 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+
 stages:
 - stage: build
+
   displayName: Build
   jobs:
     - job: Build
@@ -44,3 +46,43 @@ stages:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
             ArtifactName: 'drop'
             publishLocation: 'Container'
+
+- stage: Deploy
+
+  displayName: Deploy
+  jobs:
+    - job: Deploy
+      pool:
+          vmImage: "vs2017-win2016"
+      steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          displayName: 'ARM_Template_Deploy_AppServicePlan'
+          inputs:
+            azureResourceManagerConnection: 'azure_Connection'
+            subscriptionId: '74502350-1175-4027-bd07-fd841b8195cc'
+            resourceGroupName: MyOrdermgmtRG
+            location: 'East US'
+            csmFile: '$(System.DefaultWorkingDirectory)/_OrderManagementService_WebAPI-ASP.NET-CI/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.json'
+            csmParametersFile: '$(System.DefaultWorkingDirectory)/_OrderManagementService_WebAPI-ASP.NET-CI/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.parameters_QA.json'
+        - task: AzureResourceManagerTemplateDeployment@3
+          displayName: 'ARM_Template_Deploy_APIApp_container'
+          inputs:
+            azureResourceManagerConnection: 'azure_Connection'
+            subscriptionId: '74502350-1175-4027-bd07-fd841b8195cc'
+            resourceGroupName: MyOrdermgmtRG
+            location: 'East US'
+            csmFile: '$(System.DefaultWorkingDirectory)/_OrderManagementService_WebAPI-ASP.NET-CI/drop/OrdermanagementService_ARM_APIAPP/azuredeploy.json'
+            csmParametersFile: '$(System.DefaultWorkingDirectory)/_OrderManagementService_WebAPI-ASP.NET-CI/drop/OrdermanagementService_ARM_APIAPP/azuredeploy.parameters.json'
+        - task: AzureRmWebAppDeployment@4
+          displayName: 'Deploy Azure App Service'
+          inputs:
+            azureSubscription: '$(Parameters.ConnectedServiceName)'
+            appType: 'apiapp'
+            WebAppName: 'ordermanagementServiceAPI'
+        - task: AzureAppServiceManage@0
+          displayName: 'Start Azure App Service: ordermanagementServiceAPI'
+          inputs:
+            azureSubscription: 'azure_Connection'
+            Action: 'Start Azure App Service'
+            WebAppName: ordermanagementServiceAPI
+           
