@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
 
 trigger:
-- 
+- '*'
 
 pool:
   vmImage: 'windows-latest'
@@ -14,7 +14,6 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-  
 stages:
 - stage: build
   displayName: Build
@@ -39,5 +38,4 @@ stages:
         - task: VSTest@2
           inputs:
             platform: '$(buildPlatform)'
-            configuration: '$(buildConfiguration)'
-    
+            configuration: '$(buildConfiguration)'    
