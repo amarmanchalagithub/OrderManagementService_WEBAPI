@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ARM", "ARM", "{CE2D73AA-967
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "OrdermgmtService_ARM_AppServicePlan", "OrdermgmtService_ARM_AppServicePlan\OrdermgmtService_ARM_AppServicePlan.deployproj", "{6AAA37B2-D99F-4E7F-A630-372284DA5B2E}"
 EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "OrdermanagementService_ARM_APIAPP", "OrdermanagementService_ARM_APIAPP\OrdermanagementService_ARM_APIAPP.deployproj", "{B382A502-C692-4E0E-8AAC-ED93799CC292}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{6AAA37B2-D99F-4E7F-A630-372284DA5B2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AAA37B2-D99F-4E7F-A630-372284DA5B2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AAA37B2-D99F-4E7F-A630-372284DA5B2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B382A502-C692-4E0E-8AAC-ED93799CC292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B382A502-C692-4E0E-8AAC-ED93799CC292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B382A502-C692-4E0E-8AAC-ED93799CC292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B382A502-C692-4E0E-8AAC-ED93799CC292}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6AAA37B2-D99F-4E7F-A630-372284DA5B2E} = {CE2D73AA-9671-45EE-B418-2EF517EAB770}
+		{B382A502-C692-4E0E-8AAC-ED93799CC292} = {CE2D73AA-9671-45EE-B418-2EF517EAB770}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ACF48566-0BAD-46BB-9B9B-41A0029C2745}
