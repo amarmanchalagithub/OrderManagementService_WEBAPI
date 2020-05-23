@@ -64,6 +64,6 @@ stages:
           resourceGroupName: 'MyOrdermgmtRG'
           location: 'East US'
           templateLocation: 'URL of the file'
-          csmFile: '$(System.ArtifactsDirectory)/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.json'
-          csmParametersFile: '$(System.ArtifactsDirectory)/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.parameters_QA.json'
+          csmFile: "$(System.ArtifactsDirectory)/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.json"
+          csmParametersFile: "$(System.ArtifactsDirectory)/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.parameters_QA.json"
           deploymentMode: 'Incremental'
