@@ -55,33 +55,15 @@ stages:
       pool:
           vmImage: "vs2017-win2016"
       steps:
-        - task: AzureResourceManagerTemplateDeployment@3
-          displayName: 'ARM_Template_Deploy_AppServicePlan'
-          inputs:
-            azureResourceManagerConnection: 'azure_Connection'
-            subscriptionId: '74502350-1175-4027-bd07-fd841b8195cc'
-            resourceGroupName: MyOrdermgmtRG
-            location: 'East US'
-            csmFile: '$(Build.ArtifactStagingDirectory)/_OrderManagementService_WebAPI-ASP.NET-CI/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.json'
-            csmParametersFile: '$(System.DefaultWorkingDirectory)/_OrderManagementService_WebAPI-ASP.NET-CI/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.parameters_QA.json'
-        - task: AzureResourceManagerTemplateDeployment@3
-          displayName: 'ARM_Template_Deploy_APIApp_container'
-          inputs:
-            azureResourceManagerConnection: 'azure_Connection'
-            subscriptionId: '74502350-1175-4027-bd07-fd841b8195cc'
-            resourceGroupName: MyOrdermgmtRG
-            location: 'East US'
-            csmFile: '$(Build.ArtifactStagingDirectory)/_OrderManagementService_WebAPI-ASP.NET-CI/drop/OrdermanagementService_ARM_APIAPP/azuredeploy.json'
-            csmParametersFile: '$(System.DefaultWorkingDirectory)/_OrderManagementService_WebAPI-ASP.NET-CI/drop/OrdermanagementService_ARM_APIAPP/azuredeploy.parameters.json'
-        - task: AzureRmWebAppDeployment@4
-          displayName: 'Deploy Azure App Service'
-          inputs:
-            azureSubscription: '$(Parameters.ConnectedServiceName)'
-            appType: 'apiapp'
-            WebAppName: 'ordermanagementServiceAPI'
-        - task: AzureAppServiceManage@0
-          displayName: 'Start Azure App Service: ordermanagementServiceAPI'
-          inputs:
-            azureSubscription: 'azure_Connection'
-            Action: 'Start Azure App Service'
-            WebAppName: ordermanagementServiceAPI
+      - task: AzureResourceManagerTemplateDeployment@3
+        inputs:
+          deploymentScope: 'Resource Group'
+          azureResourceManagerConnection: 'azure_Connection'
+          subscriptionId: '74502350-1175-4027-bd07-fd841b8195cc'
+          action: 'Create Or Update Resource Group'
+          resourceGroupName: 'MyOrdermgmtRG'
+          location: 'East US'
+          templateLocation: 'Linked artifact'
+          csmFile: '$(System.DefaultWorkingDirectory)/_OrderManagementService_WebAPI-ASP.NET-CI/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.json'
+          csmParametersFile: '$(System.DefaultWorkingDirectory)/_OrderManagementService_WebAPI-ASP.NET-CI/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.parameters_QA.json'
+          deploymentMode: 'Incremental'
