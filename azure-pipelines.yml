@@ -64,6 +64,6 @@ stages:
           resourceGroupName: 'MyOrdermgmtRG'
           location: 'East US'
           templateLocation: 'Linked artifact'
-          csmFile: '$(System.DefaultWorkingDirectory)/_amarmanchalagithub.OrderManagementService_WEBAPI/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.json'
-          csmParametersFile: '$(System.DefaultWorkingDirectory)/_amarmanchalagithub.OrderManagementService_WEBAPI/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.parameters_QA.json'
+          csmFile: '$(Build.ArtifactStagingDirectory)/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.json'
+          csmParametersFile: '$(Build.ArtifactStagingDirectory/drop/OrdermgmtService_ARM_AppServicePlan/azuredeploy.parameters_QA.json'
           deploymentMode: 'Incremental'
